@@ -1,14 +1,8 @@
 # enragecolorado.org
 
-A public, independently-maintained **critical mirror** — political satire, parody, and commentary
-on techno-authoritarian, venture-funded politics as it shows up in Colorado. Built to be a
-**standing monument** that the public adds to over time, not a one-off post.
-
-> **What this is / is not.** Satire, parody, and opinion — protected political speech. **Not
-> affiliated with, endorsed by, or connected to** any organization, campaign, or person it responds
-> to, including any similarly-named entity; the name is a play on words and the resemblance is the
-> parody. It does not reproduce anyone else's content, and nothing here is a statement of fact about
-> any identifiable private individual. Not legal or voting advice. See `/about`.
+A public, independently-maintained **critical mirror** on techno-authoritarian, venture-funded
+politics as it shows up in Colorado. Built to be a **standing monument** that the public adds to
+over time, not a one-off post.
 
 ## Stack
 
@@ -64,14 +58,6 @@ Static build, no server. Two ways:
 - **CLI:** `npx wrangler pages deploy dist` (after `npm run build`).
 
 Security headers ship in `public/_headers`.
-
-## Make it public
-
-The repo is **private** until the first review. To publish:
-
-```sh
-gh repo edit ahoward/enragecolorado --visibility public --accept-visibility-change-consequences
-```
 
 ## Governance
 

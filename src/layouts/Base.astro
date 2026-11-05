@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 interface Props { title?: string; description?: string; }
 const {
   title = 'enragecolorado.org',
-  description = 'A public, independently-maintained critical mirror — political satire and commentary on techno-authoritarian politics in Colorado. Not affiliated with any organization it responds to.',
+  description = 'A standing public record on techno-authoritarian politics in Colorado — kept in the open, added to by the public.',
 } = Astro.props;
 const full = title === 'enragecolorado.org' ? title : `${title} — enragecolorado.org`;
 ---

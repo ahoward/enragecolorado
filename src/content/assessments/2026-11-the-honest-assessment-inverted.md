@@ -8,10 +8,6 @@ summary: >-
 tags: ["election-2026", "techno-authoritarianism", "venture-capital", "colorado"]
 ---
 
-> This is the inaugural entry. It is satire and political commentary — opinion and
-> hyperbole, offered in the public square. It is not a statement of fact about any
-> identifiable private individual, and it is not a reproduction of anyone else's writing.
-
 There is a genre of political writing that calls itself the **honest assessment**. It arrives
 after an election, cool and self-aware, and it performs candor the way a magician performs
 honesty — by telling you exactly the part of the trick it wants you to watch. It says: *we must
