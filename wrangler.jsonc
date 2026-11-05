@@ -1,13 +1,14 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"compatibility_date": "2026-11-01",
-	"compatibility_flags": ["global_fetch_strictly_public"],
 	"name": "enragecolorado",
-	"main": "@astrojs/cloudflare/entrypoints/server",
+	"compatibility_date": "2026-11-01",
 	"assets": {
-		"directory": "./dist",
-		"binding": "ASSETS"
+		"directory": "./dist"
 	},
+	"routes": [
+		{ "pattern": "enragecolorado.org", "custom_domain": true },
+		{ "pattern": "www.enragecolorado.org", "custom_domain": true }
+	],
 	"observability": {
 		"enabled": true
 	}
