@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const all = (await getCollection('assessments'))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title="The Record" description="Every assessment on the public record, newest first.">
+  <header class="rec-head">
+    <p class="eyebrow">The record</p>
+    <h1 class="display" style="font-size: clamp(2rem, 6vw, 3.2rem); margin: 0.3rem 0 0.6rem;">Every entry, newest first.</h1>
+    <p class="dim" style="max-width: 60ch;">A monument grows one stone at a time. Each entry is a dated, signed, source-able piece of commentary. Argue with any of them — in a PR.</p>
+  </header>
+
+  {all.length === 0 ? (
+    <p class="dim">No entries yet. The first stone is still being cut.</p>
+  ) : (
+    <ol class="list">
+      {all.map((e) => (
+        <li>
+          <a href={`/assessments/${e.id}`}>
+            <time class="mono dim" datetime={e.data.date.toISOString()}>{fmt(e.data.date)}</time>
+            <h2 class="display t">{e.data.title}</h2>
+            <p class="s dim">{e.data.summary}</p>
+            <div class="tags">
+              {e.data.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </a>
+        </li>
+      ))}
+    </ol>
+  )}
+</Base>
+
+<style>
+  .rec-head { padding-top: 1.5rem; margin-bottom: 1rem; }
+  .list { list-style: none; padding: 0; margin: 0; }
+  .list li { border-top: 1px solid var(--rule); }
+  .list li:last-child { border-bottom: 1px solid var(--rule); }
+  .list a { display: block; padding: 1.5rem 0; text-decoration: none; color: var(--ink); }
+  .list time { font-size: 0.78rem; }
+  .list .t { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin: 0.3rem 0 0.4rem; }
+  .list a:hover .t { color: var(--alarm); }
+  .list .s { margin: 0 0 0.7rem; font-size: 1rem; max-width: 64ch; }
+  .tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+</style>

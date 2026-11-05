@@ -1,0 +1,68 @@
+/* enragecolorado.org — a protest-broadsheet aesthetic. Original design.
+   dark ground by default; a light "newsprint" theme for the same content. */
+
+:root {
+  --ground: #0c0c0f;
+  --panel: #141418;
+  --ink: #ece7df;
+  --ink-dim: #a39d93;
+  --rule: #2b2b32;
+  --alarm: #e23b2e;   /* the accent — editorial red */
+  --gold: #c9a227;
+  --link: #f0b2ab;
+  --maxw: 72ch;
+  --gut: clamp(1rem, 4vw, 2.5rem);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --ground: #f4f1ea; --panel: #ebe6db; --ink: #17140f; --ink-dim: #5d564a;
+    --rule: #d6cfc0; --alarm: #c1271b; --gold: #8a6f10; --link: #a31f14;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --ground: #f4f1ea; --panel: #ebe6db; --ink: #17140f; --ink-dim: #5d564a;
+  --rule: #d6cfc0; --alarm: #c1271b; --gold: #8a6f10; --link: #a31f14;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --ground: #0c0c0f; --panel: #141418; --ink: #ece7df; --ink-dim: #a39d93;
+  --rule: #2b2b32; --alarm: #e23b2e; --gold: #c9a227; --link: #f0b2ab;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--ground); color: var(--ink);
+  font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+  font-size: 1.125rem; line-height: 1.6; font-optical-sizing: auto;
+  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
+}
+.display { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.02em; line-height: 0.98; }
+.mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+img { max-width: 100%; height: auto; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.5rem 0; }
+
+.wrap { width: 100%; max-width: 78ch; margin-inline: auto; padding-inline: var(--gut); }
+.prose { max-width: var(--maxw); margin-inline: auto; }
+.prose h2 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 800; letter-spacing: -0.01em;
+  margin-top: 2.4rem; font-size: 1.6rem; text-wrap: balance; }
+.prose h3 { font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; margin-top: 1.8rem; font-size: 1.25rem; }
+.prose blockquote { margin: 1.6rem 0; padding: 0.2rem 0 0.2rem 1.1rem; border-left: 3px solid var(--alarm);
+  color: var(--ink); font-style: italic; }
+.prose code { font-family: ui-monospace, monospace; font-size: 0.9em; background: var(--panel); padding: 0.1em 0.35em; border-radius: 3px; }
+
+.eyebrow { font-family: ui-monospace, monospace; font-size: 0.72rem; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--alarm); font-weight: 600; }
+.dim { color: var(--ink-dim); }
+.tag { display: inline-block; font-family: ui-monospace, monospace; font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-dim); border: 1px solid var(--rule); border-radius: 999px;
+  padding: 0.12rem 0.55rem; }
+
+:focus-visible { outline: 2px solid var(--alarm); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

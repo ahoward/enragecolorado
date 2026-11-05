@@ -1,0 +1,55 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const nav = [
+  { href: '/', label: 'The Monument' },
+  { href: '/assessments', label: 'The Record' },
+  { href: '/about', label: 'What This Is' },
+];
+const here = (h: string) => (h === '/' ? path === '/' : path.startsWith(h));
+---
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="display name">enrage<span class="co">colorado</span></span>
+    </a>
+    <nav aria-label="primary">
+      {nav.map((n) => (
+        <a href={n.href} class={here(n.href) ? 'on' : ''}>{n.label}</a>
+      ))}
+    </nav>
+    <button id="theme" type="button" class="mono theme" aria-label="toggle light / dark">◐</button>
+  </div>
+  <p class="wrap kicker mono">An independent critical mirror · political satire &amp; commentary · not affiliated with anyone it answers</p>
+</header>
+
+<style>
+  header { border-bottom: 1px solid var(--rule); background: var(--ground); }
+  .bar { display: flex; align-items: center; gap: 1rem; padding-block: 0.9rem; }
+  .brand { display: inline-flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--ink); }
+  .mark { width: 15px; height: 15px; background: var(--alarm); display: inline-block;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%); } /* an inverted-caution wedge */
+  .name { font-size: 1.35rem; letter-spacing: -0.03em; }
+  .co { color: var(--alarm); }
+  nav { margin-left: auto; display: flex; gap: 1.1rem; flex-wrap: wrap; }
+  nav a { font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; font-size: 0.82rem;
+    letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; color: var(--ink-dim); }
+  nav a.on, nav a:hover { color: var(--ink); }
+  nav a.on { box-shadow: inset 0 -2px 0 var(--alarm); }
+  .theme { background: transparent; border: 1px solid var(--rule); color: var(--ink); border-radius: 6px;
+    width: 2rem; height: 2rem; cursor: pointer; font-size: 1rem; line-height: 1; flex: none; }
+  .kicker { color: var(--ink-dim); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding-bottom: 0.7rem; margin: 0; }
+  @media (max-width: 560px) { nav { width: 100%; margin-left: 0; order: 3; } .theme { margin-left: auto; } }
+</style>
+
+<script is:inline>
+  document.getElementById('theme')?.addEventListener('click', function () {
+    var el = document.documentElement;
+    var cur = el.getAttribute('data-theme')
+      || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    el.setAttribute('data-theme', next);
+    try { localStorage.setItem('ec-theme', next); } catch (e) {}
+  });
+</script>
